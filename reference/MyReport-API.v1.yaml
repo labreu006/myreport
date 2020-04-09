@@ -1,0 +1,71 @@
+openapi: 3.0.0
+info:
+  title: MyReport API
+  version: '1.0'
+  contact:
+    name: 'LA INNOVATIS (Alphabet Dimension, Lda.)'
+    url: 'https://www.lainnovatis.com'
+    email: info@lainnovatis.com
+  termsOfService: 'https://myreport.lainnovatis.com/termos-servico'
+  license:
+    name: MT
+  description: Documentação sobre o uso da API da plataforma MyREPORT (repositório de informação financeira e aplicação de automatização de relatórios)
+servers:
+  - url: 'https://myreport.lainnovatis.com/api'
+    description: MyReport
+paths:
+  /trial-balance:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-api-trial-balance
+      description: Do not use GET
+    post:
+      summary: ''
+      operationId: post-api-trial-balance
+      responses:
+        '200':
+          description: OK
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+        '500':
+          description: |-
+            Internal Server Error.
+
+            Se receber este erro, por favor contacte imediatamente a LA INNOVATIS.
+      description: Endpoint para o envio de balancetes em formato JSON para a plataforma MyREPORT.
+      parameters:
+        - schema:
+            type: string
+          in: header
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cod_emp:
+                  type: string
+                ano:
+                  type: integer
+                mes:
+                  type: integer
+                linhas:
+                  type: object
+                  properties:
+                    conta:
+                      type: string
+                    descricao:
+                      type: string
+                    saldo:
+                      type: number
+    parameters: []
+components:
+  schemas: {}
+  securitySchemes:
+    API Key - 1:
+      type: http
+      scheme: bearer
